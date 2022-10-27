@@ -2,7 +2,6 @@ import fs from "fs";
 import _ from "lodash";
 import knex from "knex";
 import { Transform } from "stream";
-import { exit } from "process";
 
 // <!-- create an instance to source database -->
 const sourceDatabase = knex({
