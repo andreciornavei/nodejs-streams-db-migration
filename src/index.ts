@@ -33,7 +33,7 @@ const dataTransformer = new Transform({
         _.get(chunk, "id"),
         _.get(chunk, "name"),
         _.get(chunk, "email"),
-      ].join("|") + EOL
+      ].join("|")
     );
   },
 });
@@ -43,7 +43,7 @@ const dataPrinter = new Transform({
   writableObjectMode: true,
   transform(chunk, _encoding, callback) {
     console.log(String(chunk));
-    callback(null, chunk);
+    callback(null, chunk + EOL);
   },
 });
 
