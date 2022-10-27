@@ -3,7 +3,7 @@ import _ from "lodash";
 import knex from "knex";
 import { Transform } from "stream";
 
-// <!-- creat an instance to source database -->
+// <!-- create an instance to source database -->
 const sourceDatabase = knex({
   client: "mysql",
   connection: {
