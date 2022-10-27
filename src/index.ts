@@ -28,9 +28,12 @@ const dataTransformer = new Transform({
   transform(chunk, _encoding, callback) {
     callback(
       null,
-      [_.get(chunk, "id"), _.get(chunk, "name"), _.get(chunk, "email")].join(
-        "|"
-      )
+      [
+        "A",
+        _.get(chunk, "id"),
+        _.get(chunk, "name"),
+        _.get(chunk, "email"),
+      ].join("|")
     );
   },
 });
