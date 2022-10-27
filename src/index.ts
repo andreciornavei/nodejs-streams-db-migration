@@ -3,6 +3,7 @@ import _ from "lodash";
 import knex from "knex";
 import { Transform } from "stream";
 import { EOL } from "os";
+import { cleanpipe } from "./utils/cleanpipe";
 
 // <!-- create an instance to source database -->
 const sourceDatabase = knex({
@@ -22,7 +23,8 @@ const readtableStream = sourceDatabase
   .from("bulk_table")
   .stream();
 
-// <!-- create a function to transform data from source pattern to target pattern
+// <!-- create a function to transform data from source pattern to target pattern -->
+// <!-- * must to use cleanpipe on each value to prevent output pattern brokens -->
 const dataTransformer = new Transform({
   writableObjectMode: true,
   transform(chunk, _encoding, callback) {
@@ -30,9 +32,9 @@ const dataTransformer = new Transform({
       null,
       [
         "A",
-        _.get(chunk, "id"),
-        _.get(chunk, "name"),
-        _.get(chunk, "email"),
+        cleanpipe(_.get(chunk, "id")),
+        cleanpipe(_.get(chunk, "name")),
+        cleanpipe(_.get(chunk, "email")),
       ].join("|")
     );
   },
