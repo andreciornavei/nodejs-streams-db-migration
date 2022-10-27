@@ -43,7 +43,7 @@ const dataPrinter = new Transform({
   },
 });
 
-// <!-- create a writable scream to srite output data into a file
+// <!-- create a writable stream to write output data into a file
 const writableStream = fs.createWriteStream("output.txt");
 
 // <!-- pipe ETL streams on readable stream
