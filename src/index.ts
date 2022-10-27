@@ -40,8 +40,8 @@ const dataTransformer = new Transform({
   },
 });
 
-// <!-- create a function to print data transformation
-const dataPrinter = new Transform({
+// <!-- create a function to append EOL for each tranformed line
+const eolTransformer = new Transform({
   writableObjectMode: true,
   transform(chunk, _encoding, callback) {
     console.log(String(chunk));
@@ -53,7 +53,7 @@ const dataPrinter = new Transform({
 const writableStream = fs.createWriteStream("output.txt");
 
 // <!-- pipe ETL streams on readable stream
-readtableStream.pipe(dataTransformer).pipe(dataPrinter).pipe(writableStream);
+readtableStream.pipe(dataTransformer).pipe(eolTransformer).pipe(writableStream);
 
 // <!-- finish application when ETL finishes
 writableStream.on("finish", () => {
