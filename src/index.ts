@@ -2,6 +2,7 @@ import fs from "fs";
 import _ from "lodash";
 import knex from "knex";
 import { Transform } from "stream";
+import { exit } from "process";
 
 // <!-- create an instance to source database -->
 const sourceDatabase = knex({
@@ -48,4 +49,9 @@ const writableStream = fs.createWriteStream("output.txt");
 
 // <!-- pipe ETL streams on readable stream
 readtableStream.pipe(dataTransformer).pipe(dataPrinter).pipe(writableStream);
-readtableStream.on("end", () => console.log("finished"));
+
+// <!-- finish application when ETL finishes
+readtableStream.on("end", () => {
+  console.log("finished");
+  process.exit(0);
+});

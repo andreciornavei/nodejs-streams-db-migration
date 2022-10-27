@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "develop": "ts-node-dev --respawn --transpile-only --exit-child src/index.ts"
+    "develop": "ts-node-dev --transpile-only src/index.ts"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.186",
